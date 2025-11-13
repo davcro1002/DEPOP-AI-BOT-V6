@@ -2,13 +2,11 @@ from groq import Groq
 import json
 import os
 
-# Load Groq API key
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 client = Groq(api_key=GROQ_API_KEY) if GROQ_API_KEY else None
 
 def handler(request):
     try:
-        # Health check GET
         if request.method == "GET":
             return {
                 "statusCode": 200,
@@ -16,7 +14,6 @@ def handler(request):
                 "body": json.dumps({"message": "✅ Depop AI Bot (Groq) is running!"})
             }
 
-        # POST request
         if request.method == "POST":
             if client is None:
                 return {
@@ -33,15 +30,9 @@ def handler(request):
 
             prompt = (
                 "You are a Depop SEO and streetwear optimization expert.\n"
-                "Create a search-optimized product title under 60 characters, "
-                "and generate 10 best-performing Depop tags.\n\n"
-                f"Brand: {brand}\n"
-                f"Title: {title}\n"
-                f"Size: {size}\n"
-                f"Color: {color}\n\n"
-                "Respond only in this format:\n"
-                "Title: <optimized title>\n"
-                "Tags: tag1, tag2, tag3, ..."
+                "Create a search‑optimized product title under 60 characters and 10 top-performing tags.\n\n"
+                f"Brand: {brand}\nTitle: {title}\nSize: {size}\nColor: {color}\n\n"
+                "Respond only in this format:\nTitle: <optimized title>\nTags: tag1, tag2, ..."
             )
 
             result = client.chat.completions.create(
