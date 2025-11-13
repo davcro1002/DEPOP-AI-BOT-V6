@@ -34,7 +34,7 @@ def handler(request):
             prompt = (
                 "You are a Depop SEO and streetwear optimization expert.\n"
                 "Create a search-optimized product title under 60 characters, "
-                "and generate 10 top-performing Depop tags.\n\n"
+                "and generate 10 best-performing Depop tags.\n\n"
                 f"Brand: {brand}\n"
                 f"Title: {title}\n"
                 f"Size: {size}\n"
@@ -68,4 +68,3 @@ def handler(request):
             "headers": {"Content-Type": "application/json"},
             "body": json.dumps({"success": False, "error": str(e)})
         }
-
